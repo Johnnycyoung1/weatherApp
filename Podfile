@@ -8,3 +8,4 @@ target 'WeatherApp' do
 pod 'SwiftyJSON'
 pod 'Alamofire'
 end
+
