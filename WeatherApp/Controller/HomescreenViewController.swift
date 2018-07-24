@@ -13,6 +13,8 @@ import Alamofire
 
 class HomescreenViewController: UIViewController, CLLocationManagerDelegate, ChangeCityDelegate {
     
+    @IBOutlet weak var changeCityButton: UIButton!
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var tempertureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -25,7 +27,7 @@ class HomescreenViewController: UIViewController, CLLocationManagerDelegate, Cha
         super.viewDidLoad()
         
         locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
     }
@@ -56,6 +58,7 @@ class HomescreenViewController: UIViewController, CLLocationManagerDelegate, Cha
             case .success:
                 guard let value = response.result.value else { return }
                 let weatherJSON = JSON(value)
+                print(weatherJSON)
                 self.parseWeatherData(json: weatherJSON)
             case .failure:
                 guard let weatherError = response.result.error else { return }
@@ -66,20 +69,25 @@ class HomescreenViewController: UIViewController, CLLocationManagerDelegate, Cha
     func parseWeatherData(json: JSON) {
 
         guard let tempertureResults = json["main"]["temp"].double else { return cityLabel.text = "Weather Unavailable"}
-        weatherDataModel.temperture = Int(tempertureResults - 273.15)
+        weatherDataModel.temperture = Int((tempertureResults * 9/5) - 459.67)
         weatherDataModel.city = json["name"].stringValue
-        weatherDataModel.condition = json["weather"][0]["main"].stringValue
+        weatherDataModel.weatherConditionString = json["weather"][0]["description"].stringValue
+        weatherDataModel.condition = json["weather"][0]["id"].intValue
+        weatherDataModel.weatherBackgroundName = weatherDataModel.updateWeatherBackground(condition: weatherDataModel.condition)
         updateUserInterface()
     }
     
     func updateUserInterface() {
+        
+        backgroundImage.image = UIImage(named: weatherDataModel.weatherBackgroundName)
+        conditionsLabel.text = weatherDataModel.weatherConditionString
         tempertureLabel.text = "\(weatherDataModel.temperture)°"
         cityLabel.text = weatherDataModel.city
-        conditionsLabel.text = weatherDataModel.condition
     }
     
     func userDidEnterNew(city: String) {
-        cityLabel.text = city
+        let newCityParameters : [String : String ] = ["q" : city, "appid": openWeatherMapService.apiKey]
+        getWeatherData(url: openWeatherMapService.weatherURL, parameters: newCityParameters)
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,8 +96,7 @@ class HomescreenViewController: UIViewController, CLLocationManagerDelegate, Cha
             changeCityViewController.delegate = self
         }
     }
-    
-    
-
 }
+
+
 

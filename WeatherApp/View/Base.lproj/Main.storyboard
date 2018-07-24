@@ -21,8 +21,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rodion-kutsaev-82627" translatesAutoresizingMaskIntoConstraints="NO" id="gib-RP-y6P">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Garden Grove" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-LZ-2jL">
-                                <rect key="frame" x="162" y="229.5" width="193" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Unavailable" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-LZ-2jL">
+                                <rect key="frame" x="75" y="229.5" width="280" height="41"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Cloudy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9L-Ve-Bcb">
                                         <rect key="frame" x="0.0" y="102" width="205" height="27.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -64,9 +64,9 @@
                             <constraint firstItem="5Ts-g5-dt7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="Olo-83-xzZ"/>
                             <constraint firstItem="A5T-Sk-koi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="271" id="SOt-8i-ksw"/>
                             <constraint firstItem="gib-RP-y6P" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="YpA-Bc-1TM"/>
-                            <constraint firstItem="kNp-LZ-2jL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="162" id="eA0-kg-Bhd"/>
                             <constraint firstItem="kNp-LZ-2jL" firstAttribute="top" secondItem="5Ts-g5-dt7" secondAttribute="bottom" constant="10" id="emK-zm-R0g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Ts-g5-dt7" secondAttribute="trailing" constant="160" id="exs-M6-mfz"/>
+                            <constraint firstItem="kNp-LZ-2jL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="lWF-g1-Hdt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kNp-LZ-2jL" secondAttribute="trailing" constant="20" id="wId-Jc-Ify"/>
                             <constraint firstItem="gib-RP-y6P" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xka-gN-mEN"/>
                             <constraint firstItem="5Ts-g5-dt7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="z64-0X-jXn"/>
@@ -79,6 +79,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundImage" destination="gib-RP-y6P" id="ORj-aM-vUr"/>
+                        <outlet property="changeCityButton" destination="A5T-Sk-koi" id="eEv-YN-gqD"/>
                         <outlet property="cityLabel" destination="kNp-LZ-2jL" id="dYO-Wx-mcH"/>
                         <outlet property="conditionsLabel" destination="t9L-Ve-Bcb" id="xuV-i5-hEO"/>
                         <outlet property="tempertureLabel" destination="Ktz-eG-ccu" id="hKW-t2-7ds"/>
